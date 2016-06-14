@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
 
 		// Use Canny instead of threshold to catch squares with gradient shading
 		blur(gray, bw, Size(3, 3));
+		medianBlur(gray, gray, 9);
 		int lowThreshold = 20;
 		int ratio = 3;
 		cv::Canny(gray, bw, lowThreshold, ratio*lowThreshold, 3);
@@ -168,6 +169,7 @@ int main(int argc, char *argv[])
 				if (std::abs(1 - ((double)r.width / r.height)) <= 0.2 &&
 					std::abs(1 - (area / (CV_PI * (radius*radius)))) <= 0.2)
 					setLabel(dst, "CIR", contours[i]);
+				printf("\a");
 			}
 		}
 		cv::imshow("src", src);
